@@ -25,9 +25,6 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Run fetch-w3c script (generate Markdown)
-        run: node ./scripts/fetch-w3c.js
-
       - name: Build
         run: npm run build
 
