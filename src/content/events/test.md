@@ -1,5 +1,5 @@
 ---
-title: "Meeting Minutes — 21 November 2025"
+title: "Meeting — 21 November 2025"
 date: "2025-11-21"
 type: "meeting"
 summary: "Summary of participants and info from the WoT meeting."
