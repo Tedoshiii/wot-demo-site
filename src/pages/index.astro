@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/events.astro
+import { getCollection } from 'astro:content';
+const events = await getCollection('events', ({ data }) => true);
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// sort by date descending
+events.sort((a,b) => new Date(b.data.date) - new Date(a.data.date));
 ---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Events — WoT Demo</title>
+  </head>
+  <body>
+    <header>
+      <h1>Web of Things — Events</h1>
+      <p>Upload a Markdown in <code>src/content/events/</code> and push — the site will rebuild.</p>
+    </header>
 
-<Layout>
-	<Welcome />
-</Layout>
+    <main>
+      {events.length === 0 ? (
+        <p>No events yet.</p>
+      ) : (
+        <ul>
+          {events.map(ev => (
+            <li key={ev.id}>
+              <h2>{ev.data.title} — <small>{ev.data.date}</small></h2>
+              <p>{ev.data.summary}</p>
+              <p><a href={ev.data.link}>Event link</a></p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+  </body>
+</html>
