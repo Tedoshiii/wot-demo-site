@@ -1,17 +1,17 @@
 ---
 // src/pages/events.astro
 import { getCollection } from 'astro:content';
-const events = await getCollection('events', ({ data }) => true);
+const events = await getCollection('events', ({ }) => true);
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Events — WoT Demo</title>
+    <title>Events - WoT Demo</title>
   </head>
   <body>
     <header>
-      <h1>Web of Things — Events</h1>
-      <p>Upload a Markdown in <code>src/content/events/</code> and push — the site will rebuild.</p>
+      <h1>Web of Things - Events</h1>
+      <p>Upload a Markdown in <code>src/content/events/</code> and push.</p>
     </header>
 
     <main>
@@ -19,9 +19,9 @@ const events = await getCollection('events', ({ data }) => true);
         <p>No events yet.</p>
       ) : (
         <ul>
-          {events.map(ev => (
-            <li key={ev.id}>
-              <h2>{ev.data.title} — <small>{ev.data.date}</small></h2>
+          {events.map((ev: { data: { title: unknown; date: unknown; summary: unknown; participants: unknown; }; }) => (
+            <li>
+              <h2>{ev.data.title} - <small>{ev.data.date}</small></h2>
               <p>{ev.data.summary}</p>
               <p>{ev.data.participants}</p>
             </li>
